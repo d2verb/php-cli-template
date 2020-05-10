@@ -8,5 +8,8 @@
         "psr-4": {
             "Rich\\Console\\": "src/"
         }
-    }
+    },
+    "bin": [
+        "bin/rich"
+    ]
 }
