@@ -4,7 +4,9 @@
 require __DIR__.'/../vendor/autoload.php';
 
 use Symfony\Component\Console\Application;
+use Rich\Console\CatCommand;
 
 $app = new Application('Rich command', '0.0.1');
+$app->add(new CatCommand());
 
 $app->run();
