@@ -30,8 +30,8 @@ class CatCommand extends Command
     protected function printFileContent(OutputInterface $output, string $filename)
     {
         $file = new SplFileObject($filename);
-        while (!$file->eof()) {
-            $output->write($file->fgets());
+        foreach ($file as $line) {
+            $output->write($line);
         }
     }
 }
