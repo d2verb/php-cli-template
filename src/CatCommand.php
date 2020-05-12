@@ -2,7 +2,7 @@
 
 namespace Rich\Console;
 
-use RuntimeException;
+use SplFileObject;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -29,14 +29,9 @@ class CatCommand extends Command
 
     protected function printFileContent(OutputInterface $output, string $filename)
     {
-        $handle = fopen($filename, 'r');
-        if (!$handle) {
-            throw new RuntimeException("Can not open the file: '$filename'");
+        $file = new SplFileObject($filename);
+        while (!$file->eof()) {
+            $output->write($file->fgets());
         }
-
-        while (($buffer = fgets($handle, 4096)) !== false) {
-            $output->write($buffer);
-        }
-        fclose($handle);
     }
 }
